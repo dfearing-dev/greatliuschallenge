@@ -134,7 +134,25 @@
       );
     }
 
-    function App() {
+    function App() {React.useEffect(() => {
+  const checkAndListen = () => {
+    if (!window.firestoreTools || !window.db) {
+      setTimeout(checkAndListen, 100);
+      return;
+    }
+    const { collection, onSnapshot } = window.firestoreTools;
+    
+    return onSnapshot(collection(window.db, "appData"), (snapshot) => {
+      const cloudData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      if (cloudData.length > 0) {
+        // Update your state variable here
+      }
+    });
+  };
+
+  const unsubscribe = checkAndListen();
+  return () => unsubscribe && unsubscribe();
+}, []);
       const [visits, setVisits] = useState([]);
       const [activeTab, setActiveTab] = useState('leaderboard');
       const [isTrackModalOpen, setIsTrackModalOpen] = useState(false);
