@@ -701,6 +701,30 @@
 
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(<App />);
-  </script>
+  </script><!-- Firebase Global Data Setup -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, doc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyD97iu_jnf4VVaZOQJZf5I9RdL-L8rk_Tk",
+    authDomain: "greatliuschallenge.firebaseapp.com",
+    projectId: "greatliuschallenge",
+    storageBucket: "greatliuschallenge.firebasestorage.app",
+    messagingSenderId: "343519744616",
+    appId: "1:343519744616:web:7904bbaee3787dbdd2e1dd",
+    measurementId: "G-QQFCLRHCGC"
+  };
+
+  // Initialize Firebase & Firestore
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Expose db globally so your app scripts can save/read data
+  window.db = db;
+  window.firestoreTools = { collection, addDoc, getDocs, doc, setDoc, updateDoc };
+
+  console.log("Firebase connected successfully to greatliuschallenge!");
+</script>
 </body>
 </html>
