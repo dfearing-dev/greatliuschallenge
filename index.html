@@ -702,7 +702,27 @@
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(<App />);
   </script><!-- Firebase Global Data Setup -->
+<script type="module"><!-- Firebase Setup -->
 <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { 
+    getFirestore, collection, addDoc, getDocs, doc, setDoc, updateDoc, onSnapshot 
+  } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyD97iu_jnf4VVaZOQJZf5I9RdL-L8rk_Tk",
+    authDomain: "greatliuschallenge.firebaseapp.com",
+    projectId: "greatliuschallenge",
+    storageBucket: "greatliuschallenge.firebasestorage.app",
+    messagingSenderId: "343519744616",
+    appId: "1:343519744616:web:7904bbaee3787dbdd2e1dd",
+    measurementId: "G-QQFCLRHCGC"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  window.db = getFirestore(app);
+  window.firestoreTools = { collection, addDoc, getDocs, doc, setDoc, updateDoc, onSnapshot };
+</script>
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getFirestore, collection, addDoc, getDocs, doc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
